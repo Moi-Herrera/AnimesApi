@@ -1,41 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\jonat\\OneDrive\\Documents\\animeApi\\AnimesApi\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jonat\\OneDrive\\Documents\\PCSX2\\textures\\SLUS-21351\\dumps\\31095df0ce09a9f5-00002640.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jonat\\OneDrive\\Documents\\PCSX2\\textures\\SLUS-21351\\dumps\\310f567022cfc48-c477d6508224af63-00001994.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jonat\\OneDrive\\Documents\\PCSX2\\textures\\SLUS-21351\\dumps\\3126242bc81e576b-00002640.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jonat\\OneDrive\\Documents\\animeApi\\AnimesApi\\.gitattributes||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitattributes||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB730D9-18E9-6538-1BFB-A873718119C2}|AnimesApi.csproj|c:\\users\\jonat\\onedrive\\documents\\animeapi\\animesapi\\animesapi.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{2BB730D9-18E9-6538-1BFB-A873718119C2}|AnimesApi.csproj|solutionrelative:animesapi.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB730D9-18E9-6538-1BFB-A873718119C2}|AnimesApi.csproj|c:\\users\\jonat\\onedrive\\documents\\animeapi\\animesapi\\appsettings.json||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{2BB730D9-18E9-6538-1BFB-A873718119C2}|AnimesApi.csproj|solutionrelative:appsettings.json||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB730D9-18E9-6538-1BFB-A873718119C2}|AnimesApi.csproj|c:\\users\\jonat\\onedrive\\documents\\animeapi\\animesapi\\dtos\\userregisterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2BB730D9-18E9-6538-1BFB-A873718119C2}|AnimesApi.csproj|solutionrelative:dtos\\userregisterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB730D9-18E9-6538-1BFB-A873718119C2}|AnimesApi.csproj|c:\\users\\jonat\\onedrive\\documents\\animeapi\\animesapi\\dtos\\userlogindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2BB730D9-18E9-6538-1BFB-A873718119C2}|AnimesApi.csproj|solutionrelative:dtos\\userlogindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jonat\\OneDrive\\Documents\\animeApi\\AnimesApi\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -43,113 +9,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": -1,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "31095df0ce09a9f5-00002640.png",
-              "DocumentMoniker": "C:\\Users\\jonat\\OneDrive\\Documents\\PCSX2\\textures\\SLUS-21351\\dumps\\31095df0ce09a9f5-00002640.png",
-              "RelativeDocumentMoniker": "..\\..\\PCSX2\\textures\\SLUS-21351\\dumps\\31095df0ce09a9f5-00002640.png",
-              "ToolTip": "C:\\Users\\jonat\\OneDrive\\Documents\\PCSX2\\textures\\SLUS-21351\\dumps\\31095df0ce09a9f5-00002640.png",
-              "RelativeToolTip": "..\\..\\PCSX2\\textures\\SLUS-21351\\dumps\\31095df0ce09a9f5-00002640.png",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2025-11-07T21:26:36.223Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "310f567022cfc48-c477d6508224af63-00001994.png",
-              "DocumentMoniker": "C:\\Users\\jonat\\OneDrive\\Documents\\PCSX2\\textures\\SLUS-21351\\dumps\\310f567022cfc48-c477d6508224af63-00001994.png",
-              "RelativeDocumentMoniker": "..\\..\\PCSX2\\textures\\SLUS-21351\\dumps\\310f567022cfc48-c477d6508224af63-00001994.png",
-              "ToolTip": "C:\\Users\\jonat\\OneDrive\\Documents\\PCSX2\\textures\\SLUS-21351\\dumps\\310f567022cfc48-c477d6508224af63-00001994.png",
-              "RelativeToolTip": "..\\..\\PCSX2\\textures\\SLUS-21351\\dumps\\310f567022cfc48-c477d6508224af63-00001994.png",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2025-11-07T21:26:33.052Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "3126242bc81e576b-00002640.png",
-              "DocumentMoniker": "C:\\Users\\jonat\\OneDrive\\Documents\\PCSX2\\textures\\SLUS-21351\\dumps\\3126242bc81e576b-00002640.png",
-              "RelativeDocumentMoniker": "..\\..\\PCSX2\\textures\\SLUS-21351\\dumps\\3126242bc81e576b-00002640.png",
-              "ToolTip": "C:\\Users\\jonat\\OneDrive\\Documents\\PCSX2\\textures\\SLUS-21351\\dumps\\3126242bc81e576b-00002640.png",
-              "RelativeToolTip": "..\\..\\PCSX2\\textures\\SLUS-21351\\dumps\\3126242bc81e576b-00002640.png",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2025-11-07T21:26:26.625Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AnimesApi",
-              "DocumentMoniker": "C:\\Users\\jonat\\OneDrive\\Documents\\animeApi\\AnimesApi\\AnimesApi.csproj",
-              "RelativeDocumentMoniker": "AnimesApi.csproj",
-              "ToolTip": "C:\\Users\\jonat\\OneDrive\\Documents\\animeApi\\AnimesApi\\AnimesApi.csproj",
-              "RelativeToolTip": "AnimesApi.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-11-07T20:57:57.302Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\jonat\\OneDrive\\Documents\\animeApi\\AnimesApi\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\jonat\\OneDrive\\Documents\\animeApi\\AnimesApi\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-11-07T20:57:43.802Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": ".gitattributes",
-              "DocumentMoniker": "C:\\Users\\jonat\\OneDrive\\Documents\\animeApi\\AnimesApi\\.gitattributes",
-              "RelativeDocumentMoniker": ".gitattributes",
-              "ToolTip": "C:\\Users\\jonat\\OneDrive\\Documents\\animeApi\\AnimesApi\\.gitattributes",
-              "RelativeToolTip": ".gitattributes",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-11-07T20:57:40.414Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": ".gitignore",
-              "DocumentMoniker": "C:\\Users\\jonat\\OneDrive\\Documents\\animeApi\\AnimesApi\\.gitignore",
-              "RelativeDocumentMoniker": ".gitignore",
-              "ToolTip": "C:\\Users\\jonat\\OneDrive\\Documents\\animeApi\\AnimesApi\\.gitignore",
-              "RelativeToolTip": ".gitignore",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-11-07T20:57:34.817Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UserRegisterDto.cs",
-              "DocumentMoniker": "C:\\Users\\jonat\\OneDrive\\Documents\\animeApi\\AnimesApi\\Dtos\\UserRegisterDto.cs",
-              "RelativeDocumentMoniker": "Dtos\\UserRegisterDto.cs",
-              "ToolTip": "C:\\Users\\jonat\\OneDrive\\Documents\\animeApi\\AnimesApi\\Dtos\\UserRegisterDto.cs",
-              "RelativeToolTip": "Dtos\\UserRegisterDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T20:48:29.128Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "UserLoginDto.cs",
-              "DocumentMoniker": "C:\\Users\\jonat\\OneDrive\\Documents\\animeApi\\AnimesApi\\Dtos\\UserLoginDto.cs",
-              "RelativeDocumentMoniker": "Dtos\\UserLoginDto.cs",
-              "ToolTip": "C:\\Users\\jonat\\OneDrive\\Documents\\animeApi\\AnimesApi\\Dtos\\UserLoginDto.cs",
-              "RelativeToolTip": "Dtos\\UserLoginDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T20:48:26.548Z"
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             }
           ]
         }

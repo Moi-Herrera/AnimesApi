@@ -13,7 +13,7 @@ namespace AnimesApi.Models
         
         //relacion tabla usuario
         public int UserId { get; set; } //Fk
-        public required User? User { get; set; }  //navegacion
+        public User? User { get; set; }  //navegacion
 
         public int Puntuacion { get; set; } // 1 al 10
         public string Comentario { get; set; } = string.Empty;
