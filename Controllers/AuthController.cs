@@ -1,5 +1,6 @@
 ﻿using AnimesApi.Data;
 using AnimesApi.Dtos;
+using AnimesApi.Dtos.Common;
 using AnimesApi.Models;
 using AnimesApi.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -18,23 +19,34 @@ namespace AnimesApi.Controllers
     {
         //acceso a la base de datos y generar jwt
         private readonly AppDbContext _context;
-        private readonly JwtService _jwt;
+        private readonly JwtService _jwtServices;
 
         //constructor del controlador
-        public AuthController(AppDbContext context, JwtService jwt)
+        public AuthController(AppDbContext context, JwtService jwtServices)
         {
             _context = context;
-            _jwt = jwt;
+            _jwtServices = jwtServices;
         }
 
         //Registro de usuario
         [HttpPost("register")]
-        public async Task<ActionResult> Register([FromBody] UserRegisterDto dto)
+        public async Task<ActionResult<UserDto>> Register(UserRegisterDto dto)
         {
-            var exist = await _context.Users.AnyAsync(u => u.Username == dto.Username);
+            //verifica que el correo y el usuario no esten en uso
+            var userExist = await _context.Users
+                .FirstOrDefaultAsync(u => u.Email == dto.Email || u.Username == dto.Username);
+
+            if (userExist != null) {
+                if (userExist.Email == dto.Email)
+                    return BadRequest(new ApiResponse<string>("Correo electronico en uso"));
+
+                if (userExist.Username == dto.Username)
+                    return BadRequest(new ApiResponse<string>("Nombre de usuario en uso, intenta otro nombre"));
+            }
 
             var user = new User
             {
+                Email = dto.Email,
                 Username = dto.Username,
                 Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
             };
@@ -42,24 +54,69 @@ namespace AnimesApi.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return Ok("usuario registrado correctamente");
+            var dtoUser = new UserDto
+            {
+                Id = user.Id,
+                Username = user.Username,
+            };
+
+            return Ok(new ApiResponse<UserDto>(dtoUser,"usuario registrado correctamente"));
         }
 
         //login 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login([FromBody]  UserLoginDto dto)
+        public async Task<ActionResult<ApiResponse<AuthReponseDto>>> Login([FromBody]  UserLoginDto dto)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == dto.Username);
-            if (user == null) 
-                return Unauthorized();
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == dto.Email);
+            
+            if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.Password)) 
+                return BadRequest(new ApiResponse<string>("Usuario y/o contransena incorrectos"));
 
-            bool isValid = BCrypt.Net.BCrypt.Verify(dto.Password, user.Password);
-            if (!isValid) 
-                return Unauthorized();
+            //generar token
+            var accessToken = _jwtServices.GenerateToken(user);
+            var refreshToken = _jwtServices.GenerateRefreshToken();
 
-            var token = _jwt.GenerateToken(user);
+            //guardar refreshtoken en la base de datos
+            user.RefreshToken = refreshToken;
+            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
+            await _context.SaveChangesAsync();
 
-            return Ok(token);
+            var response = new AuthReponseDto
+            {
+                AccessToken = accessToken,
+                RefreshToken = refreshToken,   
+            };
+
+            return Ok(new ApiResponse<AuthReponseDto>(response, "Sesion iniciada"));
+        }
+
+        [HttpPost("refresh")]
+        public async Task<ActionResult<AuthReponseDto>> Refresh([FromBody]string refreshToken)
+        {
+            //validar si el token es viene vacio o no es valido
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
+            if (user == null) return 
+                    Unauthorized(new ApiResponse<string>("token invalido"));
+
+            if(!_jwtServices.IsRefreshTokenValid(user, refreshToken))
+                return Unauthorized(new ApiResponse<string>("token expirado"));
+
+            //generar nuevo token 
+            var newAccess = _jwtServices.GenerateToken(user);
+            var newRefresh = _jwtServices.GenerateRefreshToken();
+
+            user.RefreshToken = newRefresh;
+            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
+
+            await _context.SaveChangesAsync();
+
+            var response = new AuthReponseDto
+            {
+                AccessToken = newAccess,
+                RefreshToken = newRefresh
+            };
+
+            return Ok(new ApiResponse<AuthReponseDto>(response));
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AnimesApi.Data;
 using AnimesApi.Dtos;
+using AnimesApi.Dtos.Common;
 using AnimesApi.Models;
 using Azure;
 using Microsoft.AspNetCore.Authorization;
@@ -9,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,28 +31,51 @@ namespace AnimesApi.Controllers
 
         //obtener todas las reviews
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ReviewDto>>> GetReviews()
+        public async Task<ActionResult<PagedResult<ReviewDto>>> GetReviews(int page=1,int pageSize=10)
         {
-                return await _context.Reviews
-               .Include(r => r.User)
-               .Select(r => new ReviewDto
-               {
-                   Id = r.Id,
-                   Anime = r.Anime,
-                   Puntuacion = r.Puntuacion,
-                   Comentario = r.Comentario,
-                   Fecha = r.Fecha,
-                   User = new UserDto
-                   {
-                       Id = r.User.Id,
-                       Username = r.User.Username
-                   }
-               })
-               .ToListAsync();
+            var UserIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
 
+            if (UserIdClaim == null)
+                return Unauthorized(new ApiResponse<string>("usuario no autorizado"));
+
+
+            var totalCount = await _context.Reviews
+                .CountAsync();
+
+                var reviews = await _context.Reviews
+                .OrderByDescending(r => r.Fecha)
+                .Skip((page -1 ) * pageSize)
+                .Take(pageSize)
+                .Include(r => r.User)
+                .Select(r => new ReviewDto
+                {
+                    Id = r.Id,
+                    Anime = r.Anime,
+                    Puntuacion = r.Puntuacion,
+                    Comentario = r.Comentario,
+                    Fecha = r.Fecha,
+                    User = new UserDto
+                    {
+                        Id = r.User.Id,
+                        Username = r.User.Username
+                    }
+                })
+                .ToListAsync();
+
+             var result = new PagedResult<ReviewDto>
+             {
+                 Page = page,
+                 PageSize = pageSize,
+                 TotalCount = totalCount,
+                 TotalPages = (int)Math.Ceiling((double)totalCount / pageSize),
+                 Items = reviews
+             };
+
+            
+            return Ok(new ApiResponse<PagedResult<ReviewDto>>(result));
         }
 
-        //obtener todas las reviews
+        //obtener todas las reviews del usuario logeado
         [HttpGet("my-reviews")]
         public async Task<ActionResult<PagedResult<ReviewDto>>> GetMyReviews(int page= 1, int pageSize=10)
         {
@@ -59,7 +84,7 @@ namespace AnimesApi.Controllers
             var UserIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
 
             if (UserIdClaim == null)
-                return Unauthorized("usuario no autorizado");
+                return Unauthorized(new ApiResponse<string>("usuario no autorizado"));
             
             var userId = int.Parse(UserIdClaim.Value);
 
@@ -80,14 +105,14 @@ namespace AnimesApi.Controllers
                    Comentario = r.Comentario,
                    Fecha = r.Fecha,
                    User = new UserDto
-                   {
-                       Id = r.User.Id,
-                       Username = r.User.Username
-                   }
-               })
+                {
+                   Id = r.User.Id,
+                   Username = r.User.Username
+                }
+            })
             .ToListAsync();
 
-            return Ok(new PagedResult<ReviewDto>
+            var resul =(new PagedResult<ReviewDto>
             {
                 Page = page,
                 PageSize = pageSize,
@@ -95,6 +120,8 @@ namespace AnimesApi.Controllers
                 TotalPages = (int)Math.Ceiling((double)totalCount / pageSize),
                 Items = reviews
             });
+
+            return Ok(new ApiResponse<PagedResult<ReviewDto>>(resul));
         }
 
         //Obtener review por id
@@ -119,7 +146,8 @@ namespace AnimesApi.Controllers
                 .FirstOrDefaultAsync(r => r.Id == id);
 
             if (review == null) return NotFound(); // si no existe
-            return review;
+
+            return Ok(new ApiResponse<ReviewDto>(review));
         }
 
         //Crear review
@@ -130,7 +158,7 @@ namespace AnimesApi.Controllers
             var UserIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
 
             if (UserIdClaim == null) 
-                return Unauthorized("usuario no autorizado token");
+                return Unauthorized(new ApiResponse<string>("usuario no autorizado token"));
 
             //obtener el userid del token 
             var userId = int.Parse(UserIdClaim.Value);
@@ -160,18 +188,21 @@ namespace AnimesApi.Controllers
                 })
                 .FirstOrDefaultAsync();
 
-            return CreatedAtAction(nameof(GetReview), new { id = review.Id }, dto);
+            return CreatedAtAction(
+                nameof(GetReview), 
+                new { id = review.Id }, 
+                new ApiResponse<ReviewDto>(dto, "Review creada con exito"));
         }
 
         //Update review
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutReview(int id, ReviewUpdateDto reviewDto)
+        public async Task<ActionResult<ReviewDto>> PutReview(int id, ReviewUpdateDto reviewDto)
         {
             //verificar el usuario
             var UserIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
 
             if (UserIdClaim == null)
-                return Unauthorized("token invalido");
+                return Unauthorized(new ApiResponse<string>("token invalido"));
 
             var userId = int.Parse(UserIdClaim.Value);//obtener id del usuario
 
@@ -179,7 +210,7 @@ namespace AnimesApi.Controllers
             var review = await _context.Reviews.FirstOrDefaultAsync(r => r.Id == id);
             
             if (review == null) 
-                return Unauthorized("Review no encontrada");
+                return Unauthorized(new ApiResponse<string>("Review no encontrada"));
 
             //verificar que la review pertenece al usuario
             if (review.UserId != userId)
@@ -210,19 +241,19 @@ namespace AnimesApi.Controllers
                 Fecha = review.Fecha
             };
 
-            return Ok(dto);
+            return Ok(new ApiResponse<ReviewDto>(dto, "Review actualizada con exito"));
 
         }
 
         //eliminar una review solo el usuario 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteReview( int id)
+        public async Task<ActionResult> DeleteReview( int id)
         {
             ////verificar el usuario
             var UserIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
 
             if (UserIdClaim == null)
-                return Unauthorized("usuario no autorizado token");
+                return Unauthorized(new ApiResponse<string>("usuario no autorizado token"));
 
             var userId = int.Parse(UserIdClaim.Value);
 
@@ -230,17 +261,17 @@ namespace AnimesApi.Controllers
             var review = await _context.Reviews.FindAsync(id);
 
             if (review == null)
-                return NotFound("La review no existe");
+                return NotFound(new ApiResponse<string>("La review no existe"));
 
             //validar que la review pertenece al usuario
             if (review.UserId != userId)
-                return StatusCode(403, "Revire no puede ser eliminada");
+                return StatusCode(403, new ApiResponse<string> ("Review no puede ser eliminada"));
           
 
             _context.Reviews.Remove(review);
             await _context.SaveChangesAsync();
 
-            return Ok("Review eliminada") ;
+            return Ok(new ApiResponse<string>("Review eliminada"));
         }
     }
 }

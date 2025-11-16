@@ -13,13 +13,13 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //servicio para generar el codigo JWT
 builder.Services.AddScoped <JwtService>();
-
 
 //configuracion 
 builder.Services.AddAuthentication("Bearer")
@@ -39,7 +39,9 @@ builder.Services.AddAuthentication("Bearer")
             //clave para verificar el token
             IssuerSigningKey = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])
-            )
+            ),
+
+            ClockSkew = TimeSpan.Zero
         };
     });
 

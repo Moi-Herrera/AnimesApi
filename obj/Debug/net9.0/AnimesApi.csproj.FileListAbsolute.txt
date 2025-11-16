@@ -194,3 +194,4 @@ C:\Users\jonat\OneDrive\Documents\animeApi\AnimesApi\bin\Debug\net9.0\runtimes\w
 C:\Users\jonat\OneDrive\Documents\animeApi\AnimesApi\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\jonat\OneDrive\Documents\animeApi\AnimesApi\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\jonat\OneDrive\Documents\animeApi\AnimesApi\obj\Debug\net9.0\AnimesApi.sourcelink.json
+C:\Users\jonat\OneDrive\Documents\animeApi\AnimesApi\bin\Debug\net9.0\System.Linq.Dynamic.Core.dll
